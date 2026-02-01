@@ -9,8 +9,8 @@ import CameraAnimator from '../components/CameraAnimator.jsx';
 function LandingPage({
   onUpload,
   onTimeMachineClick,
-  showTimeline,
   isClickable,
+  cameraAnimating,
 }) {
   return (
     <div className="w-full h-screen flex flex-col md:flex-row items-center justify-between relative bg-black">
@@ -45,7 +45,7 @@ function LandingPage({
             intensity={1.5}
           />
           <directionalLight position={[1, 1, 1]} intensity={2} />
-          <CameraAnimator isActive={showTimeline} />
+          <CameraAnimator isActive={cameraAnimating} />
           <Suspense>
             <Center position={[5, 2, 0]}>
               <RotatingTimeMachine

@@ -7,6 +7,7 @@ import Timeline from './components/Timeline';
 function App() {
   const [memories, setMemories] = useState([]);
   const [showTimeline, setShowTimeline] = useState(false);
+  const [cameraAnimating, setCameraAnimating] = useState(false);
   const [currentYear, setCurrentYear] = useState(null);
 
   const handleUpload = (newMemories) => {
@@ -17,7 +18,10 @@ function App() {
 
   const handleTimeMachineClick = () => {
     if (memories.length > 0) {
-      setShowTimeline(true);
+      setCameraAnimating(true); // Delay timeline appearance until model animation finishes
+      setTimeout(() => {
+        setShowTimeline(true);
+      }, 6500);
     }
   };
 
@@ -45,8 +49,8 @@ function App() {
               <LandingPage
                 onUpload={handleUpload}
                 onTimeMachineClick={handleTimeMachineClick}
-                showTimeline={showTimeline}
                 isClickable={memories.length > 0}
+                cameraAnimating={cameraAnimating}
               />
               {showTimeline && (
                 <Timeline

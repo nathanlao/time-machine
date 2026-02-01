@@ -7,6 +7,7 @@ const ImageUploader = ({ onUpload }) => {
   const [year, setYear] = useState('2010');
   const [hasUploaded, setHasUploaded] = useState(false);
   const [showMessage, setShowMessage] = useState(false);
+  const [hasShownAlert, setHasShownAlert] = useState(false);
   const fileInputRef = useRef(null);
 
   const handleFileChange = (e) => {
@@ -19,7 +20,10 @@ const ImageUploader = ({ onUpload }) => {
       }
       onUpload(newMemories);
       setHasUploaded(true);
-      setShowMessage(true);
+      if (!hasShownAlert) {
+        setShowMessage(true);
+        setHasShownAlert(true);
+      }
       // Reset after a delay for visual feedback
       setTimeout(() => {
         setHasUploaded(false);
