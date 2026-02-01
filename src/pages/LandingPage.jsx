@@ -56,7 +56,6 @@ function LandingPage({
           </Suspense>
         </Canvas>
       </div>
-      <button>fly to the future</button>
       {/* Button for image upload */}
       <div className="w-full md:w-1/3 flex justify-center items-center p-8 z-20 relative">
         <ImageUploader onUpload={onUpload} />
