@@ -18,11 +18,11 @@ function App() {
 
   return (
     <div className="min-h-screen">
-        <header className="text-center"></header>
-        <main className="flex flex-col space-y-8">
-          <LandingPage onUpload={handleUpload} />
-          <Timeline memories={memories} />
-        </main>
+      <header className="text-center"></header>
+      <main className="flex flex-col space-y-8">
+        <LandingPage onUpload={handleUpload} />
+        <Timeline memories={memories} />
+      </main>
     </div>
   );
 }
