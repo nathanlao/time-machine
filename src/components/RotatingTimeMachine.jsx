@@ -1,4 +1,4 @@
-import { useRef, useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import { useFrame } from '@react-three/fiber';
 import { TimeMachine } from './3dModel/Time_machine';
 import { gsap } from 'gsap';
