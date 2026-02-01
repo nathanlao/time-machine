@@ -45,6 +45,7 @@ function App() {
               <LandingPage
                 onUpload={handleUpload}
                 onTimeMachineClick={handleTimeMachineClick}
+                showTimeline={showTimeline}
                 isClickable={memories.length > 0}
               />
               {showTimeline && (
