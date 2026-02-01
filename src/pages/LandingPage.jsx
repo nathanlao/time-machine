@@ -2,14 +2,15 @@ import { Canvas } from '@react-three/fiber';
 import { Suspense } from 'react';
 import { Center, CameraControls, PerspectiveCamera } from '@react-three/drei';
 import RotatingTimeMachine from '../components/RotatingTimeMachine.jsx';
+import ImageUploader from '../components/ImageUploader.jsx';
 
-function LandingPage() {
+function LandingPage({ onUpload }) {
   return (
-    <>
-      <title>GLB Model</title>
-      <main style={{ width: '100vw', height: '100vh', margin: 0, padding: 0 }}>
+    <div className="w-full h-[600px] flex flex-col md:flex-row items-center justify-between">
+      {/* 3D Model */}
+      <div className="w-full md:w-2/3 h-full relative">
         <Canvas style={{ width: '100%', height: '100%' }}>
-          <PerspectiveCamera makeDefault fov={10} position={[50, 30, 50]} />
+          <PerspectiveCamera makeDefault fov={9} position={[50, 30, 50]} />
           <CameraControls
             autoRotate={true}
             autoRotateSpeed={2}
@@ -22,13 +23,19 @@ function LandingPage() {
           />
           <directionalLight position={[1, 1, 1]} intensity={2} />
           <Suspense>
-            <Center>
+            <Center position={[5, 2, 0]}>
               <RotatingTimeMachine />
             </Center>
           </Suspense>
         </Canvas>
-      </main>
-    </>
+      </div>
+
+      {/* Button for image upload */}
+      <div className="w-full md:w-1/3 flex justify-center items-center p-8 z-10">
+        <ImageUploader onUpload={onUpload} />
+      </div>
+    </div>
   );
 }
+
 export default LandingPage;

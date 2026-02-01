@@ -17,15 +17,12 @@ function App() {
   };
 
   return (
-    <div className="min-h-screen bg-gray-100 py-8">
-      <div className="container mx-auto px-4">
-        <header className="text-center mb-8"></header>
-        <main className="flex flex-col items-center space-y-8">
-          <LandingPage></LandingPage>
-          <ImageUploader onUpload={handleUpload} />
+    <div className="min-h-screen">
+        <header className="text-center"></header>
+        <main className="flex flex-col space-y-8">
+          <LandingPage onUpload={handleUpload} />
           <Timeline memories={memories} />
         </main>
-      </div>
     </div>
   );
 }
