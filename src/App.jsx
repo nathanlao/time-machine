@@ -1,8 +1,13 @@
+import LandingPage from './pages/LandingPage';
 import { useState } from 'react';
 import ImageUploader from './components/ImageUploader';
 import Timeline from './components/Timeline';
 
 function App() {
+  const style = {
+    width: '100vw',
+    height: '100vh',
+  };
   const [memories, setMemories] = useState([]);
 
   const handleUpload = (newMemory) => {
@@ -16,6 +21,7 @@ function App() {
       <div className="container mx-auto px-4">
         <header className="text-center mb-8"></header>
         <main className="flex flex-col items-center space-y-8">
+          <LandingPage></LandingPage>
           <ImageUploader onUpload={handleUpload} />
           <Timeline memories={memories} />
         </main>
