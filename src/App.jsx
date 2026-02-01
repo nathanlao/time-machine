@@ -31,6 +31,7 @@ function App() {
 
   const handleBack = () => {
     setCurrentYear(null);
+    setCameraAnimating(false)
   };
 
   return (
