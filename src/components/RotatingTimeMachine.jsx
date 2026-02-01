@@ -25,8 +25,6 @@ function RotatingTimeMachine({ onMachineClick }) {
     const origRotY = ref.current.rotation.y;
     const origRotZ = ref.current.rotation.z;
 
-    console.log(origRotX, origRotY, origRotZ)
-
     // Animate machine: shrink and move up
     gsap.to(ref.current.scale, {
       x: origScale.x * 0.5,
@@ -45,7 +43,7 @@ function RotatingTimeMachine({ onMachineClick }) {
 
     // Rotate to show side profile (rotate around x-axis to tilt the view)
     gsap.to(ref.current.rotation, {
-      x: origRotX + Math.PI / 20, 
+      x: origRotX + Math.PI / 20,
       y: 3.7,
       z: origRotZ,
       duration: 4,

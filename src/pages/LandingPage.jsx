@@ -45,7 +45,9 @@ function LandingPage({ onUpload }) {
           <CameraAnimator isActive={isMachineActive} />
           <Suspense>
             <Center position={[5, 2, 0]}>
-              <RotatingTimeMachine onMachineClick={() => setIsMachineActive(true)} />
+              <RotatingTimeMachine
+                onMachineClick={() => setIsMachineActive(true)}
+              />
             </Center>
           </Suspense>
         </Canvas>
