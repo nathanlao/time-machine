@@ -4,7 +4,7 @@ import ShinyButton from '../ShinyButton';
 import { motion } from 'framer-motion';
 
 const ImageUploader = ({ onUpload }) => {
-  const [year, setYear] = useState('2010');
+  const [year, setYear] = useState('2005');
   const [hasUploaded, setHasUploaded] = useState(false);
   const fileInputRef = useRef(null);
 
