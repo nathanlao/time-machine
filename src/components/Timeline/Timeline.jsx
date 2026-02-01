@@ -1,6 +1,7 @@
 import { motion } from 'framer-motion';
 import { useState, useEffect } from 'react';
 import ShinyButton from '../ShinyButton';
+import './Timeline.css';
 
 const Timeline = ({ memories, onYearClick, onClose, selectedYear }) => {
   const uniqueYears = [...new Set(memories.map((m) => m.year))].sort(
@@ -74,7 +75,7 @@ const Timeline = ({ memories, onYearClick, onClose, selectedYear }) => {
       </div>
       <div className="max-w-6xl mx-auto">
         {/* Years container */}
-        <div className="flex justify-center gap-12 mb-6 overflow-x-auto pt-4 pb-2 scrollbar-thin scrollbar-thumb-white/10 scrollbar-track-transparent">
+        <div className="flex justify-center gap-12 mb-6 overflow-x-auto pt-4 pb-2 hide-scrollbar">
           {uniqueYears.map((year) => (
             <motion.div
               key={year}

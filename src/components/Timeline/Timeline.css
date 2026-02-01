@@ -53,3 +53,13 @@
   font-weight: bold;
   color: #333;
 }
+
+/* Hide scrollbar while keeping scroll functionality */
+.hide-scrollbar {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+
+.hide-scrollbar::-webkit-scrollbar {
+  display: none;
+}
