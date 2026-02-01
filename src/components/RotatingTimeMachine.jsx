@@ -1,9 +1,9 @@
-import { useRef, useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import { useFrame } from '@react-three/fiber';
 import { TimeMachine } from './3dModel/Time_machine';
 import { gsap } from 'gsap';
 
-function RotatingTimeMachine({ onMachineClick }) {
+function RotatingTimeMachine({ onClick, isClickable }) {
   const ref = useRef();
   const [isClicked, setIsClicked] = useState(false);
 
@@ -13,7 +13,7 @@ function RotatingTimeMachine({ onMachineClick }) {
   });
 
   const handleClick = () => {
-    if (isClicked) return;
+    if (isClicked || !isClickable) return;
     setIsClicked(true);
 
     if (!ref.current) return;
@@ -50,12 +50,14 @@ function RotatingTimeMachine({ onMachineClick }) {
       ease: 'power3.inOut',
     });
 
-    if (onMachineClick) {
-      onMachineClick();
+    if (onClick) {
+      onClick();
     }
   };
 
-  return <TimeMachine ref={ref} onPointerDown={handleClick} />;
+  return (
+    <TimeMachine ref={ref} onClick={handleClick} isClickable={isClickable} />
+  );
 }
 
 export default RotatingTimeMachine;
