@@ -1,12 +1,21 @@
-import { useState, useRef } from 'react';
+import { useState, useRef, useEffect } from 'react';
 import Magnet from '../Magnet';
 import ShinyButton from '../ShinyButton';
 import { motion } from 'framer-motion';
+import { getAllDemoMemories } from '../../data/demoMemories';
 
 const ImageUploader = ({ onUpload }) => {
   const [year, setYear] = useState('2005');
   const [hasUploaded, setHasUploaded] = useState(false);
   const fileInputRef = useRef(null);
+
+  // Auto-load demo memories on mount
+  useEffect(() => {
+    const demoMemories = getAllDemoMemories();
+    if (demoMemories.length > 0) {
+      onUpload(demoMemories, { isPreload: true });
+    }
+  }, []);
 
   const handleFileChange = (e) => {
     const files = e.target.files;
@@ -16,7 +25,7 @@ const ImageUploader = ({ onUpload }) => {
         const imageUrl = URL.createObjectURL(file);
         newMemories.push({ image: imageUrl, year });
       }
-      onUpload(newMemories);
+      onUpload(newMemories, { isPreload: false });
       setHasUploaded(true);
       // Reset after a delay for visual feedback
       setTimeout(() => {

@@ -21,13 +21,15 @@ function LandingPage({
     setShowInstruction(false);
   };
 
-  const handleUpload = (memories) => {
+  const handleUpload = (memories, options = {}) => {
     onUpload(memories);
-    setShowSuccess(true);
+    if (!options.isPreload) {
+      setShowSuccess(true);
+      setTimeout(() => {
+        setShowSuccess(false);
+      }, 3000);
+    }
     setShowInstruction(true);
-    setTimeout(() => {
-      setShowSuccess(false);
-    }, 3000);
   };
   return (
     <div className="w-full h-screen flex flex-col md:flex-row items-center justify-between relative bg-gradient-to-b from-slate-950 via-teal-950 to-slate-950">
