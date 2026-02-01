@@ -2,11 +2,16 @@ import { motion } from 'framer-motion';
 import { useState, useEffect } from 'react';
 import ShinyButton from '../ShinyButton';
 
-const Timeline = ({ memories, onYearClick, onClose }) => {
+const Timeline = ({ memories, onYearClick, onClose, selectedYear }) => {
   const uniqueYears = [...new Set(memories.map((m) => m.year))].sort(
     (a, b) => a - b
   );
-  const [currentYear, setCurrentYear] = useState(uniqueYears[0] || null);
+  // Use selectedYear if provided and valid, otherwise default to first year
+  const initialYear =
+    selectedYear && uniqueYears.includes(selectedYear)
+      ? selectedYear
+      : uniqueYears[0] || null;
+  const [currentYear, setCurrentYear] = useState(initialYear);
 
   const containerVariants = {
     hidden: { opacity: 0, y: 100 },

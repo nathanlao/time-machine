@@ -1,6 +1,6 @@
 import LandingPage from './pages/LandingPage';
 import PastWorld from './pages/PastWorld';
-import { useState } from 'react';
+import { useState, useRef } from 'react';
 import { AnimatePresence, motion } from 'framer-motion';
 import Timeline from './components/Timeline/Timeline.jsx';
 
@@ -9,11 +9,26 @@ function App() {
   const [showTimeline, setShowTimeline] = useState(false);
   const [cameraAnimating, setCameraAnimating] = useState(false);
   const [currentYear, setCurrentYear] = useState(null);
+  const hasLoadedInitialRef = useRef(false);
 
-  const handleUpload = (newMemories) => {
-    const allMemories = [...memories, ...newMemories];
-    const sortedMemories = allMemories.sort((a, b) => b.year - a.year);
-    setMemories(sortedMemories);
+  const handleUpload = (newMemories, options = {}) => {
+    // Prevent duplicate loading of demo memories using ref (synchronous check)
+    if (options.isPreload && hasLoadedInitialRef.current) {
+      return;
+    }
+    if (options.isPreload) {
+      hasLoadedInitialRef.current = true;
+    }
+
+    setMemories((prevMemories) => {
+      // Deduplicate by checking if memory already exists (by image path)
+      const existingImages = new Set(prevMemories.map((m) => m.image));
+      const uniqueNewMemories = newMemories.filter(
+        (m) => !existingImages.has(m.image)
+      );
+      const allMemories = [...prevMemories, ...uniqueNewMemories];
+      return allMemories.sort((a, b) => b.year - a.year);
+    });
   };
 
   const handleTimeMachineClick = () => {
@@ -25,13 +40,17 @@ function App() {
     }
   };
 
+  const [selectedTimelineYear, setSelectedTimelineYear] = useState(null);
+
   const handleYearClick = (year) => {
+    setSelectedTimelineYear(year);
     setCurrentYear(year);
   };
 
   const handleBack = () => {
     setCurrentYear(null);
     setCameraAnimating(false);
+    // Keep selectedTimelineYear so Timeline remembers the position
   };
 
   return (
@@ -58,6 +77,7 @@ function App() {
                   memories={memories}
                   onYearClick={handleYearClick}
                   onClose={() => setShowTimeline(false)}
+                  selectedYear={selectedTimelineYear}
                 />
               )}
             </main>
