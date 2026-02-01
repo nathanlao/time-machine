@@ -10,20 +10,20 @@ function LandingPage({ onUpload }) {
   const [isMachineActive, setIsMachineActive] = useState(false);
 
   return (
-    <div className="w-full h-screen flex flex-col md:flex-row items-center justify-between relative bg-black">
+    <div className="w-full h-screen flex flex-col md:flex-row items-center justify-between relative bg-gradient-to-b from-slate-950 via-teal-950 to-slate-950">
       <div className="absolute inset-0 z-0">
         <Galaxy
           mouseRepulsion={false}
           mouseInteraction={false}
-          density={1.5}
-          glowIntensity={0.1}
-          saturation={0.5}
+          density={1}
+          glowIntensity={0.15}
+          saturation={0}
           hueShift={140}
-          twinkleIntensity={0.3}
+          twinkleIntensity={0.9}
           rotationSpeed={0.1}
           repulsionStrength={2}
-          autoCenterRepulsion={1}
-          starSpeed={0.5}
+          autoCenterRepulsion={0}
+          starSpeed={0.7}
           speed={1}
         />
       </div>
