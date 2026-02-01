@@ -2,7 +2,7 @@ import LandingPage from './pages/LandingPage';
 import PastWorld from './pages/PastWorld';
 import { useState } from 'react';
 import { AnimatePresence, motion } from 'framer-motion';
-import Timeline from './components/Timeline';
+import Timeline from './components/Timeline/Timeline.jsx';
 
 function App() {
   const [memories, setMemories] = useState([]);
@@ -31,7 +31,7 @@ function App() {
 
   const handleBack = () => {
     setCurrentYear(null);
-    setCameraAnimating(false)
+    setCameraAnimating(false);
   };
 
   return (
@@ -65,10 +65,11 @@ function App() {
         )}
         {currentYear && (
           <PastWorld
-            key="past"
+            key={`past-${currentYear}`}
             year={currentYear}
             memories={memories}
             onBack={handleBack}
+            onYearChange={setCurrentYear}
           />
         )}
       </AnimatePresence>

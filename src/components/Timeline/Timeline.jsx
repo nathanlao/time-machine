@@ -1,5 +1,6 @@
 import { motion } from 'framer-motion';
 import { useState, useEffect } from 'react';
+import ShinyButton from '../ShinyButton';
 
 const Timeline = ({ memories, onYearClick, onClose }) => {
   const uniqueYears = [...new Set(memories.map((m) => m.year))].sort(
@@ -61,13 +62,11 @@ const Timeline = ({ memories, onYearClick, onClose }) => {
         boxShadow: '0 -10px 30px rgba(0, 0, 0, 0.3)',
       }}
     >
-      <button
-        onClick={onClose}
-        className="absolute top-4 right-4 z-10 p-3 bg-[#0096e7] text-white rounded-full hover:bg-[#0078b9] transition-all duration-300 shadow-lg hover:scale-110"
-        style={{ fontSize: '1.2rem' }}
-      >
-        ✕
-      </button>
+      <div className="absolute top-4 right-4 z-10">
+        <ShinyButton onClick={onClose} className="p-3 text-lg">
+          ✕
+        </ShinyButton>
+      </div>
       <div className="max-w-6xl mx-auto">
         {/* Years container */}
         <div className="flex justify-center gap-12 mb-6 overflow-x-auto pt-4 pb-2 scrollbar-thin scrollbar-thumb-white/10 scrollbar-track-transparent">
@@ -84,7 +83,7 @@ const Timeline = ({ memories, onYearClick, onClose }) => {
               <div
                 className={`text-sm font-semibold uppercase tracking-wider transition-all duration-300 mb-4 ${
                   year === currentYear
-                    ? 'text-[#0096e7] transform -translate-y-1'
+                    ? 'text-[#FFDE21] transform -translate-y-1'
                     : 'text-white/50 hover:text-white/70'
                 }`}
               >
@@ -93,14 +92,14 @@ const Timeline = ({ memories, onYearClick, onClose }) => {
               <div
                 className={`w-4 h-4 rounded-full transition-all duration-300 border-2 ${
                   year === currentYear
-                    ? 'bg-[#0096e7] border-[#f1c40f] shadow-lg'
-                    : 'bg-transparent border-[#0096e7]/40 hover:border-[#0096e7]/80'
+                    ? 'bg-[#00d4ff] border-[#FFDE21] shadow-lg'
+                    : 'bg-transparent border-[#00d4ff]/40 hover:border-[#00d4ff]/80'
                 }`}
                 style={
                   year === currentYear
                     ? {
                         boxShadow:
-                          '0 0 20px rgba(0, 150, 231, 0.6), 0 0 40px rgba(241, 196, 15, 0.3)',
+                          '0 0 20px rgba(0, 212, 255, 0.6), 0 0 40px rgba(249, 115, 22, 0.3)',
                       }
                     : {}
                 }
@@ -112,9 +111,10 @@ const Timeline = ({ memories, onYearClick, onClose }) => {
         {/* Timeline line */}
         <div className="relative h-1 bg-gradient-to-r from-transparent via-white/20 to-transparent rounded mt-2">
           <motion.div
-            className="absolute h-full bg-gradient-to-r from-blue-500 to-purple-500 rounded shadow-lg"
+            className="absolute h-full bg-[#00d4ff] rounded shadow-lg"
             style={{
-              boxShadow: '0 0 20px rgba(59, 130, 246, 0.5)',
+              boxShadow:
+                '0 0 20px rgba(0, 212, 255, 0.8), 0 0 40px rgba(0, 212, 255, 0.4)',
             }}
             initial={{ width: 0 }}
             animate={{ width: `${progress}%` }}
