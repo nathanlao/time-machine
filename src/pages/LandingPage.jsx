@@ -5,7 +5,7 @@ import RotatingTimeMachine from '../components/RotatingTimeMachine.jsx';
 import ImageUploader from '../components/ImageUploader.jsx';
 import Galaxy from '../components/Galaxy/Galaxy.jsx';
 
-function LandingPage({ onUpload }) {
+function LandingPage({ onUpload, onTimeMachineClick, isClickable }) {
   return (
     <div className="w-full h-screen flex flex-col md:flex-row items-center justify-between relative bg-black">
       <div className="absolute inset-0 z-0">
@@ -41,12 +41,15 @@ function LandingPage({ onUpload }) {
           <directionalLight position={[1, 1, 1]} intensity={2} />
           <Suspense>
             <Center position={[5, 2, 0]}>
-              <RotatingTimeMachine />
+              <RotatingTimeMachine
+                onClick={onTimeMachineClick}
+                isClickable={isClickable}
+              />
             </Center>
           </Suspense>
         </Canvas>
       </div>
-
+      <button>fly to the future</button>
       {/* Button for image upload */}
       <div className="w-full md:w-1/3 flex justify-center items-center p-8 z-20 relative">
         <ImageUploader onUpload={onUpload} />

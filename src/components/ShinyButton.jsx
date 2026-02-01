@@ -32,7 +32,7 @@ const ShinyButton = ({ children, onClick, className = '' }) => {
       }}
     >
       <span
-        className="relative block h-full w-full uppercase tracking-wide"
+        className="relative block h-full w-full tracking-wide"
         style={{
           textShadow: '0 1px 2px rgba(0,0,0,0.2)',
         }}
