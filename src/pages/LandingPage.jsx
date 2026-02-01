@@ -1,11 +1,14 @@
 import { Canvas } from '@react-three/fiber';
-import { Suspense } from 'react';
+import { Suspense, useState } from 'react';
 import { Center, CameraControls, PerspectiveCamera } from '@react-three/drei';
 import RotatingTimeMachine from '../components/RotatingTimeMachine.jsx';
 import ImageUploader from '../components/ImageUploader.jsx';
 import Galaxy from '../components/Galaxy/Galaxy.jsx';
+import CameraAnimator from '../components/CameraAnimator.jsx';
 
 function LandingPage({ onUpload }) {
+  const [isMachineActive, setIsMachineActive] = useState(false);
+
   return (
     <div className="w-full h-screen flex flex-col md:flex-row items-center justify-between relative bg-black">
       <div className="absolute inset-0 z-0">
@@ -39,9 +42,12 @@ function LandingPage({ onUpload }) {
             intensity={1.5}
           />
           <directionalLight position={[1, 1, 1]} intensity={2} />
+          <CameraAnimator isActive={isMachineActive} />
           <Suspense>
             <Center position={[5, 2, 0]}>
-              <RotatingTimeMachine />
+              <RotatingTimeMachine
+                onMachineClick={() => setIsMachineActive(true)}
+              />
             </Center>
           </Suspense>
         </Canvas>
