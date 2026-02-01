@@ -8,7 +8,15 @@ import { useGLTF } from '@react-three/drei';
 export function TimeMachine(props) {
   const { nodes, materials } = useGLTF('3dModel/time_machine.glb');
   return (
-    <group {...props} dispose={null}>
+    <group
+      {...props}
+      dispose={null}
+      onClick={props.onClick}
+      onPointerOver={() =>
+        (document.body.style.cursor = props.isClickable ? 'pointer' : 'default')
+      }
+      onPointerOut={() => (document.body.style.cursor = 'auto')}
+    >
       <mesh
         geometry={nodes.Cube010.geometry}
         material={materials['Material.021']}
